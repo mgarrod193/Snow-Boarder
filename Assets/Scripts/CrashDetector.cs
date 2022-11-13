@@ -6,14 +6,19 @@ using UnityEngine.SceneManagement;
 public class CrashDetector : MonoBehaviour
 {
     [SerializeField] float reloadDelay = 2f;
+    [SerializeField] ParticleSystem crashEffect;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //plays crash effect and resets game on player crashing
         if (collision.tag != "Finish Line")
         {
+            crashEffect.Play();
             Invoke("ReloadScene", reloadDelay);
         }
 
     }
+
+    // reloads Scene
     void ReloadScene()
     {
         SceneManager.LoadScene(0);

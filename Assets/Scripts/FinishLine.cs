@@ -9,6 +9,7 @@ public class FinishLine : MonoBehaviour
     [SerializeField] float reloadDelay = 2f;
     [SerializeField] ParticleSystem finishEffect;
 
+
     //Method called when collision with trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,6 +17,7 @@ public class FinishLine : MonoBehaviour
         if (collision.tag == "Player")
         {
             finishEffect.Play();
+            GetComponent<AudioSource>().Play();
             Invoke("ReloadScene", reloadDelay);
         }
     }
